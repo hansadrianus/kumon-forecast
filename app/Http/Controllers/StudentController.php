@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MasterStudentTemplateExport;
 use App\Imports\MasterStudentImport;
 use Illuminate\Http\Request;
 use App\Student;
@@ -38,7 +39,7 @@ class StudentController extends Controller
         }
 
         $bulkStudent = [];
-        for ($i=0; $i < count($request->student_id); $i++) { 
+        for ($i=0; $i < count($request->student_id); $i++) {
             array_push($bulkStudent, [
                 'id' => $request->student_id[$i],
                 'name' => $request->student_name[$i],
@@ -60,15 +61,15 @@ class StudentController extends Controller
         $student = Student::find($id)->load('score');
         return view('student.view')->with('student', $student);
     }
-    
+
     public function edit($id)
     {
-        
+
     }
 
     public function update(Request $request, $id)
     {
-        
+
     }
 
     public function delete($id)
@@ -84,7 +85,7 @@ class StudentController extends Controller
     }
 
     public function storeScore(Request $request)
-    {        
+    {
         $validator = Validator::make($request->all(), [
             'month.*' => 'required',
             'year.*' => 'required',
@@ -96,7 +97,7 @@ class StudentController extends Controller
         }
 
         $bulkScore = [];
-        for ($i=0; $i < count($request->month); $i++) { 
+        for ($i=0; $i < count($request->month); $i++) {
             array_push($bulkScore, [
                 'month' => $request->month[$i],
                 'year' => $request->year[$i],
@@ -117,5 +118,9 @@ class StudentController extends Controller
     public function studentScoreImport(){
         Excel::import(new MasterStudentImport, request()->file('upload_student_score'));
         return redirect()->route('student.index')->withSuccess('Test Upload Passed');
+    }
+
+    public function importTemplate(){
+        return (new MasterStudentTemplateExport)->download('student_import_template.xlsx');
     }
 }

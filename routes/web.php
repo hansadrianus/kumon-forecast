@@ -25,11 +25,11 @@ Auth::routes([
 
 // Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', 'HomeController@index')->name('home');
-    
+
     // route dashboard
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
-    
-    
+
+
     // route student
     Route::get('/student', 'StudentController@index')->name('student.index');
     Route::get('/student/create', 'StudentController@create')->name('student.create');
@@ -38,7 +38,8 @@ Auth::routes([
     Route::post('/student/update/{id}', 'StudentController@update')->name('student.update');
     Route::get('/student/delete/{id}', 'StudentController@delete')->name('student.delete');
     Route::get('/student/view/{id}', 'StudentController@view')->name('student.view');
-    
+    Route::get('/student/download/template', 'StudentController@importTemplate')->name('student.download.template');
+
     // route student score
     Route::post('/student/score/store', 'StudentController@storeScore')->name('student.score.store');
     Route::post('/student/score/import', 'StudentController@studentScoreImport')->name('student.score.import');
@@ -46,7 +47,7 @@ Auth::routes([
     // route forecast
     Route::get('/forecast', 'ForecastController@index')->name('forecast.index');
     Route::post('/forecast/result', 'ForecastController@result')->name('forecast.result');
-    
+
     // route users
     Route::get('/staff', 'StaffController@index')->name('staff.index');
 // });

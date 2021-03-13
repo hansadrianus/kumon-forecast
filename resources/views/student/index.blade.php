@@ -79,16 +79,16 @@
                     <h4 class="modal-title">Upload Student Score</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-            
+
                     <!-- Modal body -->
                     <div class="modal-body">
                         <input type="file" name="upload_student_score" />
                     </div>
-            
+
                     <!-- Modal footer -->
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Upload</button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Download Template</button>
+                        <a href="{{ route('student.download.template') }}" class="btn btn-warning">Download Template</a>
                     </div>
                 </form>
             </div>
@@ -100,6 +100,6 @@
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable();
-        }) 
+        })
     </script>
 @endsection

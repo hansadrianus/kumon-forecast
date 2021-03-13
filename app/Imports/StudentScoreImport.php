@@ -11,12 +11,12 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 class StudentScoreImport implements ToModel, WithHeadingRow, SkipsOnFailure
 {
     use SkipsFailures;
-    
+
     public function model(array $row)
     {
         //Index in array = column in excel - must be in string
         return new StudentScore([
-            'student_id' => $row['student_id'],
+            'student_id' => $row['nim'],
             'month' => $row['month'],
             'year' => $row['year'],
             'score' => $row['score'],
