@@ -15,6 +15,9 @@
                 <li class="breadcrumb-item active">Peramalan</li>
             </ol>
         </div>
+        <div class="col-md-7 col-4 align-self-center">
+            <a class="btn waves-effect waves-light btn-info pull-right text-white" data-toggle="modal" data-target="#uploadForecast"> Upload Peramalan</a>
+        </div>
     </div>
 
     @include('partials.alert')
@@ -168,6 +171,33 @@
                     </form>
                     
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal" id="uploadForecast">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="{{ route('student.score.import') }}" enctype="multipart/form-data">
+                    @csrf
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h4 class="modal-title">Upload Peramalan</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <input type="file" name="upload_forecast" />
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Upload</button>
+                        <a href="{{ route('student.download.template') }}" class="btn btn-warning">Download Template</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
